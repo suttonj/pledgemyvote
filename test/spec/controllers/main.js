@@ -6,10 +6,14 @@ describe('Controller: MainCtrl', function () {
   beforeEach(module('pledgeApp'));
 
   var MainCtrl,
-    scope;
+    scope,
+    $httpBackend;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
+    $httpBackend = _$httpBackend_;
+    $httpBackend.expectGET('/api/pledges')
+      .respond(['HTML5 Boilerplate', 'AngularJS', 'Karma', 'Express']);
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
       $scope: scope
@@ -17,6 +21,8 @@ describe('Controller: MainCtrl', function () {
   }));
 
   it('should attach a list of pledges to the scope', function () {
-    expect(scope.pledges.length).toBe(3);
+    expect(scope.pledges).toBeUndefined();
+    $httpBackend.flush();
+    expect(scope.pledges.length).toBe(4);
   });
 });

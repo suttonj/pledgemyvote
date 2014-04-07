@@ -1,0 +1,31 @@
+<div ng-include="'partials/navbar'"></div>
+
+<div class="jumbotron">
+  <h2>Pledges</h2>
+
+  <!-- Add new pledge form -->
+  <form role="form" ng-submit="addPledge()">
+    <div class="row">
+      <div class="input-group">
+        <input type="text" ng-model="pledge" placeholder="I will vote for ..." class="form-control">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Pledge">
+        </span>
+      </div>
+    </div>
+  </form>
+  <p></p>
+
+  <ul class="list-group">
+    <li ng-repeat="pledge in pledges" class="list-group-item">
+      {{pledge.text}}
+      <span class="input-group-btn">
+        <button class="btn btn-danger" ng-click="removePledge($index)" aria-label="Remove">X</button>
+    </li>
+  </ul>
+  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+</div>
+
+<div class="footer">
+  <p>♥ from the Yeoman team</p>
+</div>
