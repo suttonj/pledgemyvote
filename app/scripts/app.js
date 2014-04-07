@@ -4,7 +4,7 @@ angular.module('pledgeApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider

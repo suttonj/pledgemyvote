@@ -7,7 +7,7 @@
   <form role="form" ng-submit="addPledge()">
     <div class="row">
       <div class="input-group">
-        <input type="text" ng-model="pledge" placeholder="I will vote for ..." class="form-control">
+        <input type="text" ng-model="formData.text" placeholder="I will vote for ..." class="form-control input-lg text-center">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Pledge">
         </span>
@@ -18,9 +18,10 @@
 
   <ul class="list-group">
     <li ng-repeat="pledge in pledges" class="list-group-item">
-      {{pledge.text}}
-      <span class="input-group-btn">
-        <button class="btn btn-danger" ng-click="removePledge($index)" aria-label="Remove">X</button>
+      <label>
+        <input type="checkbox" ng-click="removePledge(pledge._id, $index)" aria-label="Remove">
+        {{pledge.text}}
+      </label>
     </li>
   </ul>
   <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
