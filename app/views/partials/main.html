@@ -4,27 +4,44 @@
   <h2>Pledges</h2>
 
   <!-- Add new pledge form -->
-  <form role="form" ng-submit="addPledge()">
-    <div class="row">
-      <div class="input-group">
-        <input type="text" ng-model="formData.text" placeholder="I will vote for ..." class="form-control input-lg text-center">
+  <form role="form" class="form-inline" ng-submit="addPledge()">
+    <!--<div class="row"> -->
+      <div class="form-group">
+        <label>
+          I will vote for 
+        </label>
+        <input type="text" ng-model="formData.candidate" placeholder="(candidate or incumbent)" class="form-control input-lg text-center">
+      </div>
+      <div class="form-group">
+        <label>
+          if he/she 
+        </label>
+        <select class="form-control" ng-model="form.action" ng-options="a.label for a in form.actions" required>
+      </div>
+      <div class="form-group">
+        <input type="text" ng-model="formData.subject" placeholder="Topic or Ideology" class="form-control input-lg text-center">
+      </div>
+      <div class="form-group">
         <span class="input-group-btn">
           <input type="submit" class="btn btn-primary" value="Pledge">
         </span>
       </div>
-    </div>
+    <!--</div>-->
   </form>
   <p></p>
 
   <ul class="list-group">
     <li ng-repeat="pledge in pledges" class="list-group-item">
       <label>
-        <input type="checkbox" ng-click="removePledge(pledge._id, $index)" aria-label="Remove">
+       {{ pledge.commits }}
+       <input type="checkbox" ng-click="commitPledge(pledge)" aria-label="Pledge">
+      </label>
+      <label>
+       <!--  <input type="checkbox" ng-click="removePledge(pledge._id, $index)" aria-label="Remove"> -->
         {{pledge.text}}
       </label>
     </li>
   </ul>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
 
 <div class="footer">
